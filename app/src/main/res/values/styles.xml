@@ -1,0 +1,132 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- This is the styling for action bar -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <!--To change the text styling of options menu items</item>-->
+        <item name="android:itemTextAppearance">@style/MyActionBar.MenuTextStyle</item>
+        <!--To change the background of options menu-->
+        <item name="android:itemBackground">#fff</item>
+    </style>
+
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/mainPrimary</item>
+        <item name="titleTextStyle">@style/MyActionBarTitle</item>
+    </style>
+
+    <style name="MyActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/mainWhite</item>
+    </style>
+
+    <style name="MyActionBar.MenuTextStyle"
+        parent="style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/textGray</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+
+
+    <style name="AboutTheme" parent="Theme.AppCompat.Light">
+        <!-- This is the styling for action bar -->
+        <item name="actionBarStyle">@style/AboutActionBar</item>
+        <!--To change the text styling of options menu items</item>-->
+        <item name="android:itemTextAppearance">@style/AboutActionBar.MenuTextStyle</item>
+        <!--To change the background of options menu-->
+        <item name="android:itemBackground">#fff</item>
+    </style>
+
+    <style name="AboutActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/mainKolaPata</item>
+        <item name="titleTextStyle">@style/AboutActionBarTitle</item>
+    </style>
+
+    <style name="AboutActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/mainGray</item>
+    </style>
+
+    <style name="AboutActionBar.MenuTextStyle"
+        parent="style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/textGray</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+
+    <style name="SimulationTheme" parent="Theme.AppCompat.Light">
+        <!-- This is the styling for action bar -->
+        <item name="actionBarStyle">@style/SimulationActionBar</item>
+        <!--To change the text styling of options menu items</item>-->
+        <item name="android:itemTextAppearance">@style/SimulationActionBar.MenuTextStyle</item>
+        <!--To change the background of options menu-->
+        <item name="android:itemBackground">#fff</item>
+    </style>
+
+    <style name="SimulationActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/mainRed</item>
+        <item name="titleTextStyle">@style/SimulationActionBarTitle</item>
+    </style>
+
+    <style name="SimulationActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/mainWhite</item>
+    </style>
+
+    <style name="SimulationActionBar.MenuTextStyle"
+        parent="style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/textGray</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+
+
+
+    <style name="InputTheme" parent="Theme.AppCompat.Light">
+        <!-- This is the styling for action bar -->
+        <item name="actionBarStyle">@style/InputActionBar</item>
+        <!--To change the text styling of options menu items</item>-->
+        <item name="android:itemTextAppearance">@style/InputActionBar.MenuTextStyle</item>
+        <!--To change the background of options menu-->
+        <item name="android:itemBackground">#fff</item>
+    </style>
+
+    <style name="InputActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/mainPurp</item>
+        <item name="titleTextStyle">@style/InputActionBarTitle</item>
+    </style>
+
+    <style name="InputActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/mainWhite</item>
+    </style>
+
+    <style name="InputActionBar.MenuTextStyle"
+        parent="style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/textGray</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+
+
+    <style name="AlgoTheme" parent="Theme.AppCompat.Light">
+        <!-- This is the styling for action bar -->
+        <item name="actionBarStyle">@style/AlgoActionBar</item>
+        <!--To change the text styling of options menu items</item>-->
+        <item name="android:itemTextAppearance">@style/AlgoActionBar.MenuTextStyle</item>
+        <!--To change the background of options menu-->
+        <item name="android:itemBackground">#fff</item>
+    </style>
+
+    <style name="AlgoActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/mainCyan</item>
+        <item name="titleTextStyle">@style/AlgoActionBarTitle</item>
+    </style>
+
+    <style name="AlgoActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/mainGray</item>
+    </style>
+
+    <style name="AlgoActionBar.MenuTextStyle"
+        parent="style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/textGray</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+
+</resources>

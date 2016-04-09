@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bkCream"
+    android:orientation="horizontal"
+    tools:context="newbies.aircheck.Credits">
+
+    <ImageView
+        android:layout_width="175dp"
+        android:layout_height="159dp"
+        android:id="@+id/deptImage"
+        android:background="@drawable/dept"
+        android:layout_above="@+id/deptView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/textGreen"
+        android:textColorHighlight="#2e2e2e"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="@string/deptname"
+        android:id="@+id/deptView"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:gravity="center_vertical|center|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:text=""
+        android:id="@+id/creditView"
+        android:textColor="@color/textGreen"
+        android:textColorHighlight="#2e2e2e"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
+        android:maxLines = "50"
+        android:scrollbars = "vertical"
+        android:layout_above="@+id/deptView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/deptImage"
+        android:layout_marginLeft="80dp" />
+
+
+</RelativeLayout>

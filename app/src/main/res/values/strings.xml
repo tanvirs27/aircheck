@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AirCheck</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="credit">
+        <big>DU Newbies</big>
+
+    </string>
+
+    <string name="deptname">
+        <big>"DU Newbies\nDepartment of Computer Science and Engineering\nUniversity of Dhaka\n"</big>
+    </string>
+    <string name="title_activity_credits">Credits</string>
+    <string name="title_activity_input">User Input</string>
+
+</resources>
