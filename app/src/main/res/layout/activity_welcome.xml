@@ -4,7 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:orientation="vertical"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@color/mainBG"
+android:background="@color/main5"
 tools:context="newbies.aircheck.Welcome"
     android:weightSum="1">
 
@@ -19,14 +19,15 @@ tools:context="newbies.aircheck.Welcome"
     android:id="@+id/welcomeMsg"
         android:layout_marginBottom="84dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/textPurple" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:background="@drawable/biglogo"
-        android:layout_above="@+id/welcomeMsg"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

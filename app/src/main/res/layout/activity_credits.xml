@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="fill_parent"
 android:layout_height="match_parent"
 android:background="@color/bkCream"
-tools:context="newbies.aircheck.Credits">
+tools:context="com.newbies.aircheck.Credits">
 
     <ImageView
         android:layout_width="200dp"

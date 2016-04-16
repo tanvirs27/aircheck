@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void nearMe(View v)
     {
-        Intent intent=new Intent(MainActivity.this,Credits.class);
+        Intent intent=new Intent(MainActivity.this,UserInput.class);
         startActivity(intent);
     }
 

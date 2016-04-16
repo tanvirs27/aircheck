@@ -13,6 +13,7 @@
     <color name="textBlue">#050059</color>
     <color name="textGreen">#1d3330</color>
     <color name="textGray">#0a0909</color>
+    <color name="textPurple">#673ab7</color>
     <color name="actionbar_background">#fff</color>
 
 
@@ -31,4 +32,5 @@
     <color name="mainBG">#EFE4B0</color>
 
     <color name="mainSky">#4995eb</color>
+    <color name="main5">#b5aae4</color>
 </resources>
