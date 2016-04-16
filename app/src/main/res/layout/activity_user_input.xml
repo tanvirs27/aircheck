@@ -57,7 +57,7 @@
         android:id="@+id/locationButton"
         android:hint="Use GPS to locate me"
         android:src="@drawable/location"
-        android:background="@color/main5"
+        android:background="@color/mainKolaPata"
         android:layout_alignTop="@+id/locationText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

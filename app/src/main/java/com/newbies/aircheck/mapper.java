@@ -20,7 +20,7 @@ public class mapper extends AppCompatActivity {
         myWebView.setWebViewClient(new WebViewClient());
 
     //    myWebView.loadUrl("https://www.google.com.bd/maps/@23.7288312,90.3988565,20z?hl=bn");
-        myWebView.loadUrl("https://worldview.earthdata.nasa.gov/");
+        myWebView.loadUrl("http://aqicn.org/city/bangladesh/dhaka/us-consulate/");
         //myWebView.loadUrl("https://worldview.earthdata.nasa.gov/?p=geographic&l=VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor,AIRS_Prata_SO2_Index_Night,AIRS_Prata_SO2_Index_Day,AIRS_CO_Total_Column_Night,AIRS_CO_Total_Column_Day,MODIS_Terra_Aerosol,Reference_Labels(hidden),Reference_Features(hidden),Coastlines&t=2016-03-27&v=-432.9905721991639,-177.9888915296982,335.3844278008361,197.1986084703018");
     }
 

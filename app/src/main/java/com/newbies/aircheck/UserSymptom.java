@@ -85,9 +85,10 @@ public class UserSymptom extends AppCompatActivity {
             }
         }
         createOnClick();
+        finish();
         String out="Name="+name+"\nAge ="+age+"\nLocation ="+location+"\nSymptom"+val[0]+" "+val[1]+" "+val[2]+" "+val[3];
         //Toast.makeText(UserSymptom.this, out,Toast.LENGTH_SHORT).show();
-        onclickshow();
+        //onclickshow();
     }
 
     protected void radioInit()
@@ -170,7 +171,7 @@ public class UserSymptom extends AppCompatActivity {
             stringBuffer.append("Smoke plumes :" + cursor.getString(11) + "\n");
             stringBuffer.append("Relative humidity :" + cursor.getString(12) + "\n\n");
         }
-        showMessage("Data :", stringBuffer.toString());
+        showMessage("Your Personal Records :", stringBuffer.toString());
         cursor.close();
         db.close();
     }

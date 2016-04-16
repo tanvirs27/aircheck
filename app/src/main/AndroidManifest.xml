@@ -20,6 +20,7 @@
         <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,13 +30,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.newbies.aircheck.UserInput" />
-        </activity> />
+        </activity>
+        />
         <activity android:name=".UserSymptom">
             android:parentActivityName=".MainActivity"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.newbies.aircheck.UserInput" />
         </activity>
+        <activity android:name=".Pollution"></activity>
     </application>
 
 </manifest>

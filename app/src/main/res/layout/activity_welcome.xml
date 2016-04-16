@@ -17,17 +17,27 @@ tools:context="com.newbies.aircheck.Welcome"
     android:gravity="center"
     android:fontFamily="sans-serif-condensed"
     android:id="@+id/welcomeMsg"
-        android:layout_marginBottom="84dp"
+        android:textColor="@color/textPurple"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/textPurple" />
+        android:layout_marginBottom="15dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:background="@drawable/biglogo"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/welcomeMsg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="81dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:id="@+id/nasaView"
+        android:src="@drawable/nasaapp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/imageView" />
 
 </RelativeLayout>

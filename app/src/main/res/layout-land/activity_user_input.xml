@@ -59,7 +59,7 @@
         android:layout_height="50dp"
         android:id="@+id/locationButton"
         android:src="@drawable/location"
-        android:background="@color/main5"
+        android:background="@color/main4"
         android:layout_alignBottom="@+id/locationText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

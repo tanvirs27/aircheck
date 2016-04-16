@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void nearMe(View v)
     {
-        Intent intent=new Intent(MainActivity.this,UserInput.class);
+        Intent intent=new Intent(MainActivity.this,mapper.class);
         startActivity(intent);
     }
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void pollutionStats(View v)
     {
-        Intent intent=new Intent(MainActivity.this,mapper.class);
+        Intent intent=new Intent(MainActivity.this,Pollution.class);
         startActivity(intent);
     }
 
