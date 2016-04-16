@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="AppTheme" parent="Theme.AppCompat.Light">
+                <!-- This is the styling for action bar -->
+                <item name="actionBarStyle">@style/MyActionBar</item>
+                <!--To change the text styling of options menu items</item>-->
+                <item name="android:itemTextAppearance">@style/MyActionBar.MenuTextStyle</item>
+                <!--To change the background of options menu-->
+                <item name="android:itemBackground">#fff</item>
+                <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+                <item name="colorAccent">@color/mainWhite</item>
+                <item name="android:colorForeground">@color/abc_color_highlight_material</item>
+                <item name="colorPrimary">@color/mainKolaPata</item>
+                <item name="android:colorBackground">@color/mainKolaPata</item>
+                <item name="colorPrimaryDark">@color/primary_dark_material_dark</item>
+                <item name="android:navigationBarColor">@color/mainKolaPata</item>
+        </style>
+</resources>

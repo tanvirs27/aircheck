@@ -11,12 +11,12 @@
     </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@color/mainPrimary</item>
+        <item name="background">@color/mainKolaPata</item>
         <item name="titleTextStyle">@style/MyActionBarTitle</item>
     </style>
 
     <style name="MyActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/mainWhite</item>
+        <item name="android:textColor">@color/textGreen</item>
     </style>
 
     <style name="MyActionBar.MenuTextStyle"

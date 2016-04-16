@@ -4,8 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main5"
-    tools:context="newbies.aircheck.Welcome"
+    android:background="@color/mainKolaPata"
+    tools:context="com.newbies.aircheck.Welcome"
     android:weightSum="1">
 
     <TextView

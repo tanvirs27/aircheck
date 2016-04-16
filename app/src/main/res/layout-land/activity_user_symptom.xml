@@ -79,7 +79,6 @@
                 android:id="@+id/eyeView"
                 android:gravity="center_vertical|center_horizontal"
                 android:textColor="@color/textPurple"
-                android:layout_below="@+id/symptomView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
         </RelativeLayout>
@@ -90,7 +89,8 @@
             android:layout_below="@+id/itchyLayout"
             android:layout_alignRight="@+id/itchyLayout"
             android:layout_alignEnd="@+id/itchyLayout"
-            android:id="@+id/coughLayout">
+            android:id="@+id/coughLayout"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -150,7 +150,8 @@
             android:id="@+id/sneezeLayout"
             android:layout_below="@+id/coughLayout"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -205,7 +206,7 @@
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Submit"
                 android:id="@+id/symSubmitButton"
@@ -223,7 +224,8 @@
             android:id="@+id/nasalLayout"
             android:layout_below="@+id/sneezeLayout"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"

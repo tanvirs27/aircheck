@@ -1,5 +1,6 @@
 package com.newbies.aircheck;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,25 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UserSymptom extends AppCompatActivity {
 
@@ -22,16 +42,19 @@ public class UserSymptom extends AppCompatActivity {
     RadioGroup[] symGroup;
     RadioButton[][] symBtn;
     RadioButton[] valBtn;
-    String location,name;
+    String location,name,curdate,curtime;
     int age;
     int val[];
     int selectedId[];
     Button symSubmitButton;
+    database db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_symptom);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        db = new database(this);
+        db.getWritableDatabase();
         Bundle extras = getIntent().getExtras();
         name = extras.getString("name");
         age =extras.getInt("age");
@@ -61,9 +84,10 @@ public class UserSymptom extends AppCompatActivity {
                     val[i]=j;
             }
         }
+        createOnClick();
         String out="Name="+name+"\nAge ="+age+"\nLocation ="+location+"\nSymptom"+val[0]+" "+val[1]+" "+val[2]+" "+val[3];
-        Toast.makeText(UserSymptom.this, out,Toast.LENGTH_SHORT).show();
-        finish();
+        //Toast.makeText(UserSymptom.this, out,Toast.LENGTH_SHORT).show();
+        onclickshow();
     }
 
     protected void radioInit()
@@ -103,5 +127,71 @@ public class UserSymptom extends AppCompatActivity {
                 return super.onOptionsItemSelected(menuItem);
         }
     }
+
+    public void createOnClick() {
+
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat time = new SimpleDateFormat("HH:MM:SS aa");
+        curdate = date.format(new Date());
+        curtime = time.format(new Date());
+        double air_quality=10;
+        double ash_plumes=20;
+        double smoke_plumes=30;
+        double relative_humidity=40;
+
+        boolean res = db.insertData(curdate, curtime,
+                age,location,val[0],val[1],val[2],val[3],10,20,30,40);
+        if (res == true)
+            Toast.makeText(UserSymptom.this, "Data Inserted", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(UserSymptom.this, "Data Insertion Failed", Toast.LENGTH_LONG).show();
+
+
+    }
+
+    public void onclickshow() {
+        Cursor cursor = db.getData();
+        if (cursor.getCount() == 0) {
+            showMessage("Error", "Data not found");
+            return;
+        }
+
+        StringBuffer stringBuffer = new StringBuffer();
+        while (cursor.moveToNext()) {
+            stringBuffer.append("TIME: "+ cursor.getString(1)+"\n"+"DATE: "+cursor.getString(2) + "\n\n");
+            stringBuffer.append("Age :" + cursor.getString(3) + "\n");
+            stringBuffer.append("Location :" + cursor.getString(4) + "\n");
+            stringBuffer.append("Itchy eye :" + cursor.getString(5) + "\n");
+            stringBuffer.append("Cough :" + cursor.getString(6) + "\n");
+            stringBuffer.append("Sneeze :" + cursor.getString(7) + "\n");
+            stringBuffer.append("Nasal obstruction :" + cursor.getString(8) + "\n");
+            stringBuffer.append("Air quality :" + cursor.getString(9) + "\n");
+            stringBuffer.append("Ash plumes  :" + cursor.getString(10) + "\n");
+            stringBuffer.append("Smoke plumes :" + cursor.getString(11) + "\n");
+            stringBuffer.append("Relative humidity :" + cursor.getString(12) + "\n\n");
+        }
+        showMessage("Data :", stringBuffer.toString());
+        cursor.close();
+        db.close();
+    }
+
+    public void showMessage(String title, String message) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setCancelable(true);
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setPositiveButton(
+                "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        finish();
+                    }
+                });
+        AlertDialog alert1 = alertDialog.create();
+        alert1.show();
+
+    }
+
 
 }
