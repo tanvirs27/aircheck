@@ -52,7 +52,7 @@ public class Welcome extends Activity implements AnimationListener {
         // Take any action after completing the animation
 
         try {
-            Thread.sleep(1500);
+            Thread.sleep(400);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

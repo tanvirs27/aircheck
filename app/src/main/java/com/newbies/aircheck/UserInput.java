@@ -51,9 +51,9 @@ public class UserInput extends AppCompatActivity implements
     TextView tvLatlong,tvCity,tvCountry;
     double longitude,latitude;
 
-    String location,name;
+    String location,name,country;
     int age;
-    EditText nameText,ageText,locationText;
+    EditText nameText,ageText,locationText,countryText;
     Button idSubmitButton;
     ImageButton locationButton;
     @Override
@@ -64,6 +64,7 @@ public class UserInput extends AppCompatActivity implements
         nameText=(EditText)findViewById(R.id.nameText);
         ageText=(EditText)findViewById(R.id.ageText);
         locationText=(EditText)findViewById(R.id.locationText);
+        countryText=(EditText)findViewById(R.id.countryText);
         idSubmitButton=(Button)findViewById(R.id.idSubmitButton);
         locationButton=(ImageButton)findViewById(R.id.locationButton);
 
@@ -79,7 +80,7 @@ public class UserInput extends AppCompatActivity implements
 
     public void nameClicker(View V)
     {
-        int check=3;
+        int check=4;
         if(nameText.getText().length()==0 )
         {
                name="Anonymous";
@@ -96,6 +97,15 @@ public class UserInput extends AppCompatActivity implements
         else {
             check--;
             location=locationText.getText().toString();
+        }
+        if(countryText.getText().length()==0)
+        {
+            Toast.makeText(UserInput.this, "Please fill up all the Mandatory fields",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
+            check--;
+            country=countryText.getText().toString();
         }
         if(ageText.getText().length()==0)
         {
@@ -114,7 +124,8 @@ public class UserInput extends AppCompatActivity implements
         Intent intent=new Intent(UserInput.this,UserSymptom.class);
         intent.putExtra("name",name);
         intent.putExtra("age",age);
-        intent.putExtra("Location",location);
+        intent.putExtra("location",location);
+        intent.putExtra("country",country);
         startActivity(intent);
         finish();
     }
@@ -268,22 +279,40 @@ public class UserInput extends AppCompatActivity implements
     @Override
     protected void onPause() {
         super.onPause();
-        stopLocationUpdates();
+        try {
+            stopLocationUpdates();
+        }
+        catch(java.lang.IllegalStateException e)
+        {
+            Log.i("Fahim","NO API");
+        };
     }
 
     protected void stopLocationUpdates() {
-        LocationServices.FusedLocationApi.removeLocationUpdates(
-                mGoogleApiClient, this);
-        Log.d(TAG, "Location update stopped .......................");
+        try {
+            LocationServices.FusedLocationApi.removeLocationUpdates(
+                    mGoogleApiClient, this);
+            Log.d(TAG, "Location update stopped .......................");
+        }
+        catch(java.lang.IllegalStateException e)
+        {
+            Log.i("Fahim","NO API");
+        };
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mGoogleApiClient.isConnected()) {
-            startLocationUpdates();
-            Log.d(TAG, "Location update resumed .....................");
+        try {
+            if (mGoogleApiClient.isConnected()) {
+                startLocationUpdates();
+                Log.d(TAG, "Location update resumed .....................");
+            }
         }
+        catch(java.lang.IllegalStateException e)
+        {
+            Log.i("Fahim","NO API");
+        };
     }
 
     @Override

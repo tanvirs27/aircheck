@@ -22,7 +22,7 @@
         android:layout_below="@+id/nameIntro"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3dp"
         android:textColor="@color/textPurple" />
 
     <EditText
@@ -36,7 +36,8 @@
         android:hint= "Enter Your Age*"
         android:layout_below="@+id/nameText"
         android:layout_alignParentLeft="true"
-        android:textColor="@color/textPurple" />
+        android:textColor="@color/textPurple"
+        android:layout_marginTop="3dp" />
 
     <EditText
         android:layout_width="280dp"
@@ -51,7 +52,7 @@
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/locationButton"
         android:layout_toStartOf="@+id/locationButton"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:textColor="@color/textPurple" />
 
     <ImageButton
@@ -93,8 +94,21 @@
         android:text="* - Mandatory Fields"
         android:id="@+id/noteView"
         android:textColor="@color/textPurple"
-        android:layout_above="@+id/idSubmitButton"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBottom="@+id/countryText"
+        android:layout_alignRight="@+id/idSubmitButton"
+        android:layout_alignEnd="@+id/idSubmitButton" />
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/countryText"
+        android:hint="Enter Your Country*"
+        android:gravity="center_horizontal"
+        android:textColor="@color/textPurple"
+        android:layout_below="@+id/locationText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
