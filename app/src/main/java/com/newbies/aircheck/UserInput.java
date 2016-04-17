@@ -24,9 +24,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,10 +39,15 @@ import java.util.Locale;
 
 
 public class UserInput extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,com.google.android.gms.location.LocationListener{
+
+    private static final String TAG = "LocationActivity";
+    private static final long INTERVAL = 1000 * 10;
+    private static final long FASTEST_INTERVAL = 1000 * 5;
 
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    LocationRequest mLocationRequest;
     TextView tvLatlong,tvCity,tvCountry;
     double longitude,latitude;
 
@@ -56,6 +66,15 @@ public class UserInput extends AppCompatActivity implements
         locationText=(EditText)findViewById(R.id.locationText);
         idSubmitButton=(Button)findViewById(R.id.idSubmitButton);
         locationButton=(ImageButton)findViewById(R.id.locationButton);
+
+        createLocationRequest();
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
     }
 
     public void nameClicker(View V)
@@ -135,19 +154,17 @@ public class UserInput extends AppCompatActivity implements
 
     public void onClickGps(View view){
 
-        if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
+
+        if (mLastLocation != null) {
+            latitude= mLastLocation.getLatitude();
+            longitude= mLastLocation.getLongitude();
+
+            // tvLatlong.setText("Latitude: "+ String.valueOf(latitude)+" Longitude: "+
+            //         String.valueOf(longitude));
+
+            getAddress();
         }
 
-        if(mGoogleApiClient!= null){
-            mGoogleApiClient.connect();
-        }
-        else
-            Toast.makeText(this, "Not connected...", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -178,15 +195,9 @@ public class UserInput extends AppCompatActivity implements
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
 
-        if (mLastLocation != null) {
-            latitude= mLastLocation.getLatitude();
-            longitude= mLastLocation.getLongitude();
+        startLocationUpdates();
 
-           // tvLatlong.setText("Latitude: "+ String.valueOf(latitude)+" Longitude: "+
-           //         String.valueOf(longitude));
 
-            getAddress();
-        }
     }
 
     @Override
@@ -209,7 +220,7 @@ public class UserInput extends AppCompatActivity implements
                 System.out.println(addresses.get(0).getLocality());
                 System.out.println(addresses.get(0).getCountryName());
 
-             //   tvCity.setText(addresses.get(0).getLocality());
+                //   tvCity.setText(addresses.get(0).getLocality());
              //   tvCountry.setText(addresses.get(0).getCountryName());
 
                 locationText.setText(addresses.get(0).getLocality());
@@ -217,5 +228,69 @@ public class UserInput extends AppCompatActivity implements
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void createLocationRequest() {
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(INTERVAL);
+        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart fired ..............");
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop fired ..............");
+        mGoogleApiClient.disconnect();
+
+    }
+
+    protected void startLocationUpdates() {
+
+        if ( ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    11);
+        }
+
+        PendingResult<Status> pendingResult = LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient, mLocationRequest, this);
+        Log.d(TAG, "Location update started ..............: ");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocationUpdates();
+    }
+
+    protected void stopLocationUpdates() {
+        LocationServices.FusedLocationApi.removeLocationUpdates(
+                mGoogleApiClient, this);
+        Log.d(TAG, "Location update stopped .......................");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mGoogleApiClient.isConnected()) {
+            startLocationUpdates();
+            Log.d(TAG, "Location update resumed .....................");
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d(TAG, "Firing onLocationChanged..............................................");
+        mLastLocation = location;
+
+
     }
 }
