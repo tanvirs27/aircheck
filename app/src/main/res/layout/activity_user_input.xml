@@ -60,7 +60,8 @@
         android:background="@color/mainKolaPata"
         android:layout_alignTop="@+id/locationText"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickGps"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
