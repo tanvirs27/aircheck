@@ -228,13 +228,14 @@ public class UserInput extends AppCompatActivity implements
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
 
             if (addresses.size() > 0) {
-                System.out.println(addresses.get(0).getLocality());
-                System.out.println(addresses.get(0).getCountryName());
+              //  System.out.println(addresses.get(0).getLocality());
+              //  System.out.println(addresses.get(0).getCountryName());
 
                 //   tvCity.setText(addresses.get(0).getLocality());
              //   tvCountry.setText(addresses.get(0).getCountryName());
 
                 locationText.setText(addresses.get(0).getLocality());
+                countryText.setText(addresses.get(0).getCountryName());
             }
         } catch (IOException e) {
             e.printStackTrace();

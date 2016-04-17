@@ -45,7 +45,7 @@
         android:ems="10"
         android:id="@+id/locationText"
         android:text=""
-        android:hint= "Enter Your Location*"
+        android:hint= "Enter Your City*"
         android:gravity="center_horizontal"
         android:layout_below="@+id/ageText"
         android:layout_alignParentLeft="true"
