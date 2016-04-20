@@ -56,6 +56,9 @@ public class UserSymptom extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_symptom);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled( true );
+        setTitle(R.string.usersymptom);
+        //getActionBar().setIcon(R.drawable.ic_action_user_input);
         db = new database(this);
         db.getWritableDatabase();
         Bundle extras = getIntent().getExtras();
@@ -139,10 +142,10 @@ public class UserSymptom extends AppCompatActivity {
         SimpleDateFormat time = new SimpleDateFormat("HH:MM:SS aa");
         curdate = date.format(new Date());
         curtime = time.format(new Date());
-        double air_quality=r.nextDouble()*100;;
-        double ash_plumes=r.nextDouble()*70;;
+        double air_quality=r.nextDouble()*100;
+        double ash_plumes=r.nextDouble()*70;
         double smoke_plumes=r.nextDouble()*20;
-        double relative_humidity=r.nextDouble()*400;;
+        double relative_humidity=r.nextDouble()*400;
 
         boolean res = db.insertData(curdate, curtime,
                 age,location,country,val[0],val[1],val[2],val[3],10,20,30,40);

@@ -14,6 +14,8 @@ public class Pollution extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled( true );
+        setTitle(R.string.pollution);
         setContentView(R.layout.activity_pollution);
         final TextView polView = (TextView) findViewById(R.id.polView);
         polView.setMovementMethod(new ScrollingMovementMethod());

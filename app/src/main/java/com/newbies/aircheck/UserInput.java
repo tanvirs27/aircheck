@@ -60,6 +60,9 @@ public class UserInput extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled( true );
+        setTitle(R.string.userinput);
+       // getActionBar().setIcon(R.drawable.ic_action_user_input);
         setContentView(R.layout.activity_user_input);
         nameText=(EditText)findViewById(R.id.nameText);
         ageText=(EditText)findViewById(R.id.ageText);
@@ -152,7 +155,8 @@ public class UserInput extends AppCompatActivity implements
                         Intent intent = new Intent(UserInput.this, UserSymptom.class);
                         intent.putExtra("name", name);
                         intent.putExtra("age", age);
-                        intent.putExtra("Location", location);
+                        intent.putExtra("location", location);
+                        intent.putExtra("country",country);
                         startActivity(intent);
                         finish();
                     }
@@ -235,7 +239,9 @@ public class UserInput extends AppCompatActivity implements
              //   tvCountry.setText(addresses.get(0).getCountryName());
 
                 locationText.setText(addresses.get(0).getLocality());
+                location=addresses.get(0).getLocality();
                 countryText.setText(addresses.get(0).getCountryName());
+                country=addresses.get(0).getCountryName();
             }
         } catch (IOException e) {
             e.printStackTrace();

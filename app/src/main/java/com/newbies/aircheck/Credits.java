@@ -14,6 +14,8 @@ public class Credits extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled( true );
+        setTitle(R.string.credits);
         setContentView(R.layout.activity_credits);
         final TextView textView = (TextView) findViewById(R.id.creditView);
         textView.setMovementMethod(new ScrollingMovementMethod());

@@ -40,7 +40,7 @@
 
                 android:textSize="25sp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="Symptoms" />
+                android:text="@string/userinput" />
         </FrameLayout>
 
         <FrameLayout
@@ -71,7 +71,7 @@
 
                 android:textSize="25sp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="Pollution Stats" />
+                android:text="@string/pollution" />
         </FrameLayout>
 
     </TableRow>
@@ -111,7 +111,7 @@
 
                 android:textSize="25sp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="Near Me" />
+                android:text="@string/nearme" />
         </FrameLayout>
 
         <FrameLayout
@@ -142,7 +142,7 @@
 
                 android:textSize="25sp"
                 android:fontFamily="sans-serif-condensed"
-                android:text=" About " />
+                android:text="About" />
         </FrameLayout>
 
     </TableRow>

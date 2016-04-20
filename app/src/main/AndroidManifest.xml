@@ -26,7 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mapper" />
+        <activity android:name=".mapper">
+            android:parentActivityName=".MainActivity"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.newbies.aircheck.UserInput" />
+        </activity>
         <activity android:name=".UserInput">
             android:parentActivityName=".MainActivity"
             <meta-data
@@ -40,7 +45,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.newbies.aircheck.UserInput" />
         </activity>
-        <activity android:name=".Pollution"></activity>
+        <activity android:name=".Pollution">
+            android:parentActivityName=".MainActivity"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.newbies.aircheck.UserInput" />
+        </activity>
     </application>
 
 </manifest>
