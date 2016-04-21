@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -49,6 +50,7 @@ public class UserInput extends AppCompatActivity implements
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     LocationRequest mLocationRequest;
+    LocationManager locationManager;
     TextView tvLatlong,tvCity,tvCountry;
     double longitude,latitude;
 
@@ -157,7 +159,7 @@ public class UserInput extends AppCompatActivity implements
                         intent.putExtra("name", name);
                         intent.putExtra("age", age);
                         intent.putExtra("location", location);
-                        intent.putExtra("country",country);
+                        intent.putExtra("country", country);
                         startActivity(intent);
                         finish();
                     }
@@ -175,14 +177,21 @@ public class UserInput extends AppCompatActivity implements
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
 
+        Toast.makeText(UserInput.this, "onClickGps",Toast.LENGTH_SHORT).show();
+
         if (mLastLocation != null) {
             latitude= mLastLocation.getLatitude();
             longitude= mLastLocation.getLongitude();
+
+            Toast.makeText(UserInput.this, "inside if",Toast.LENGTH_SHORT).show();
 
             // tvLatlong.setText("Latitude: "+ String.valueOf(latitude)+" Longitude: "+
             //         String.valueOf(longitude));
 
             getAddress();
+        }
+        else if(mLastLocation== null){
+            Toast.makeText(UserInput.this, "null",Toast.LENGTH_SHORT).show();
         }
 
 
@@ -232,9 +241,16 @@ public class UserInput extends AppCompatActivity implements
     }
 
     void getAddress(){
+
+        Log.d("rifat", "inside getAddress");
         Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
         try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            Log.d("rifat", "inside try");
+            Log.d("rifat", latitude+ " "+ longitude);
+            double a= latitude,b=longitude;
+            List<Address> addresses = geocoder.getFromLocation(a, b, 1);
+
+            Log.d("rifat", "address got");
 
             if (addresses.size() > 0) {
               //  System.out.println(addresses.get(0).getLocality());
@@ -242,13 +258,18 @@ public class UserInput extends AppCompatActivity implements
 
                 //   tvCity.setText(addresses.get(0).getLocality());
              //   tvCountry.setText(addresses.get(0).getCountryName());
+                Log.d("rifat", "size greater 0");
 
                 locationText.setText(addresses.get(0).getLocality());
                 location=addresses.get(0).getLocality();
                 countryText.setText(addresses.get(0).getCountryName());
                 country=addresses.get(0).getCountryName();
+
+                Log.d("rifat", location + " "+ country);
+            //    Toast.makeText(UserInput.this, location + " "+ country,Toast.LENGTH_SHORT).show();
             }
         } catch (IOException e) {
+            Log.d("rifat", e.toString());
             e.printStackTrace();
         }
     }
@@ -264,6 +285,10 @@ public class UserInput extends AppCompatActivity implements
     public void onStart() {
         super.onStart();
         Log.d(TAG, "onStart fired ..............");
+
+        if(!isGpsOn()){
+            gpsDialog();
+        }
         mGoogleApiClient.connect();
     }
 
@@ -271,7 +296,17 @@ public class UserInput extends AppCompatActivity implements
     public void onStop() {
         super.onStop();
         Log.d(TAG, "onStop fired ..............");
-        mGoogleApiClient.disconnect();
+
+
+        try {
+            if (mGoogleApiClient.isConnected()) {
+                mGoogleApiClient.disconnect();
+            }
+        }
+        catch(java.lang.IllegalStateException e)
+        {
+
+        };
 
     }
 
@@ -331,7 +366,44 @@ public class UserInput extends AppCompatActivity implements
     public void onLocationChanged(Location location) {
         Log.d(TAG, "Firing onLocationChanged..............................................");
         mLastLocation = location;
+    }
 
+    public boolean isGpsOn() {
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void gpsDialog()
+    {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Do you want to turn GPS on?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(callGPSSettingIntent);
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
 
     }
+
 }
