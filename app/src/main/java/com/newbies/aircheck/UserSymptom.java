@@ -44,7 +44,7 @@ import java.util.Random;
 
 public class UserSymptom extends AppCompatActivity {
 
-    final int symptomNumber = 4;
+    final int symptomNumber = 6;
     final int symptomGrade = 4;
     final int eye = 0;
     final int cough = 1;
@@ -111,8 +111,10 @@ public class UserSymptom extends AppCompatActivity {
         }
         createOnClick();
         // finish();
-        String out = "Name=" + name + "\nAge =" + age + "\nLocation =" + location + "\nCountry" + country + "\nSymptom" + val[0] + " " + val[1] + " " + val[2] + " " + val[3];
-        //Toast.makeText(UserSymptom.this, out,Toast.LENGTH_SHORT).show();
+        String out = "Name=" + name + "\nAge =" + age + "\nLocation =" + location + "\nCountry" + country + "\nSymptom" ;
+        for(int i=0;i<symptomNumber;i++)
+            out+=" "+val[i];
+        Toast.makeText(UserSymptom.this, out,Toast.LENGTH_SHORT).show();
         onclickshow();
     }
 
@@ -121,6 +123,8 @@ public class UserSymptom extends AppCompatActivity {
         symGroup[1] = (RadioGroup) findViewById(R.id.coughGroup);
         symGroup[2] = (RadioGroup) findViewById(R.id.sneezeGroup);
         symGroup[3] = (RadioGroup) findViewById(R.id.nasalGroup);
+        symGroup[4] = (RadioGroup) findViewById(R.id.AsthemaGroup);
+        symGroup[5] = (RadioGroup) findViewById(R.id.chestGroup);
       /*
        symBtn[0][0]=(RadioButton)findViewById(R.id.itchy_none);
         symBtn[0][1]=(RadioButton)findViewById(R.id.itchy_mild);
@@ -164,7 +168,7 @@ public class UserSymptom extends AppCompatActivity {
         double relative_humidity = r.nextDouble() * 400;
 
         boolean res = db.insertData(curdate, curtime,
-                age, location, country, val[0], val[1], val[2], val[3], 10, 20, 30, 40);
+                age, location, country, val[0], val[1], val[2], val[3], air_quality, ash_plumes, smoke_plumes, relative_humidity);
         if (res == true)
             Toast.makeText(UserSymptom.this, "Data Inserted", Toast.LENGTH_LONG).show();
         else
@@ -199,7 +203,11 @@ public class UserSymptom extends AppCompatActivity {
         //showMessage("Your Personal Records :", stringBuffer.toString());
         cursor.close();
         db.close();
-        String sendData=name+" "+age+" "+location+" "+country+" "+val[0]+" "+val[1]+" "+val[2]+" "+val[3];
+        String sendData="";
+        sendData=name.toLowerCase();
+        sendData+=" "+age+" "+location.toLowerCase()+" "+country.toLowerCase();
+        for(int i=0;i<symptomNumber;i++)
+            sendData+=" "+val[i];
         HttpSend httas = new HttpSend();
         httas.execute(sendData);
     }

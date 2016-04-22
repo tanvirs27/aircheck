@@ -1,283 +1,404 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ScrollView01"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="none" >
-
-    <RelativeLayout
+    tools:context="com.newbies.aircheck.UserSymptom">
+    <ScrollView
+        android:id="@+id/symLandView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.newbies.aircheck.UserSymptom"
-        android:background="@color/main4">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Grade Your Symptoms"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/symptomView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:gravity="center_vertical|center_horizontal"
-            android:textColor="@color/textPurple" />
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_above="@+id/symSubmitButton"
+        android:layout_below="@+id/symptomView">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@+id/symptomView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
-            android:id="@+id/itchyLayout">
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:context="com.newbies.aircheck.UserSymptom"
+            android:background="@color/main4">
 
-            <RadioGroup
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@+id/eyeView"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:id="@+id/eyeGroup"
-                android:baselineAligned="true">
-                <RadioButton android:id="@+id/itchy_none"
+                android:layout_marginTop="20dp"
+                android:id="@+id/itchyLayout"
+                android:layout_alignParentTop="true">
+
+                <RadioGroup
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/eyeView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/eyeGroup"
+                    android:baselineAligned="true">
+                    <RadioButton android:id="@+id/itchy_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None"/>
+                    // android:onClick="onRadioButtonClicked"/>
+                    <RadioButton android:id="@+id/itchy_mild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mild"/>
+                    // android:onClick="onRadioButtonClicked"/>
+                    <RadioButton android:id="@+id/itchy_moderate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate"/>
+                    // android:onClick="onRadioButtonClicked"/>
+                    <RadioButton android:id="@+id/itchy_severe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Severe"/>
+                    // android:onClick="onRadioButtonClicked"/>
+
+                </RadioGroup>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="None"/>
-                // android:onClick="onRadioButtonClicked"/>
-                <RadioButton android:id="@+id/itchy_mild"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Itchy Eye"
+                    android:id="@+id/eyeView"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/textPurple"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/itchyLayout"
+                android:layout_alignRight="@+id/itchyLayout"
+                android:layout_alignEnd="@+id/itchyLayout"
+                android:id="@+id/coughLayout"
+                android:layout_marginTop="10dp">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mild"/>
-                // android:onClick="onRadioButtonClicked"/>
-                <RadioButton android:id="@+id/itchy_moderate"
-                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Cough"
+                    android:id="@+id/coughView"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/textPurple"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <RadioGroup
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Moderate"/>
-                // android:onClick="onRadioButtonClicked"/>
-                <RadioButton android:id="@+id/itchy_severe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Severe"/>
-                // android:onClick="onRadioButtonClicked"/>
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/coughView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/coughGroup"
+                    android:baselineAligned="true" >
 
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/cough_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None"
+                        />  // android:onClick="onRadioButtonClicked" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Itchy Eye"
-                android:id="@+id/eyeView"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="@color/textPurple"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-        </RelativeLayout>
+                    <RadioButton
+                        android:id="@+id/cough_mild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mild"
+                        />  // android:onClick="onRadioButtonClicked" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@+id/itchyLayout"
-            android:layout_alignRight="@+id/itchyLayout"
-            android:layout_alignEnd="@+id/itchyLayout"
-            android:id="@+id/coughLayout"
-            android:layout_marginTop="10dp">
+                    <RadioButton
+                        android:id="@+id/cough_moderate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate"
+                        />  // android:onClick="onRadioButtonClicked" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Cough"
-                android:id="@+id/coughView"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="@color/textPurple"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                    <RadioButton
+                        android:id="@+id/cough_severe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Severe"
+                        />  // android:onClick="onRadioButtonClicked" />
+                </RadioGroup>
+            </RelativeLayout>
 
-            <RadioGroup
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@+id/coughView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:id="@+id/coughGroup"
-                android:baselineAligned="true" >
-
-                <RadioButton
-                    android:id="@+id/cough_none"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="None"
-                    />  // android:onClick="onRadioButtonClicked" />
-
-                <RadioButton
-                    android:id="@+id/cough_mild"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mild"
-                    />  // android:onClick="onRadioButtonClicked" />
-
-                <RadioButton
-                    android:id="@+id/cough_moderate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Moderate"
-                    />  // android:onClick="onRadioButtonClicked" />
-
-                <RadioButton
-                    android:id="@+id/cough_severe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Severe"
-                    />  // android:onClick="onRadioButtonClicked" />
-            </RadioGroup>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/sneezeLayout"
-            android:layout_below="@+id/coughLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Sneeze"
-                android:id="@+id/sneezeView"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="@color/textPurple"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-            <RadioGroup
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@+id/sneezeView"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/sneezeLayout"
+                android:layout_below="@+id/coughLayout"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:id="@+id/sneezeGroup"
-                android:baselineAligned="true" >
+                android:layout_marginTop="10dp">
 
-                <RadioButton
-                    android:id="@+id/sneeze_none"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="None"
-                    />  // android:onClick="onRadioButtonClicked" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Sneeze"
+                    android:id="@+id/sneezeView"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/textPurple"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
-                <RadioButton
-                    android:id="@+id/sneeze_mild"
-                    android:layout_width="wrap_content"
+                <RadioGroup
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mild"
-                    />  // android:onClick="onRadioButtonClicked" />
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/sneezeView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/sneezeGroup"
+                    android:baselineAligned="true" >
 
-                <RadioButton
-                    android:id="@+id/sneeze_moderate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Moderate"
-                    />  // android:onClick="onRadioButtonClicked" />
+                    <RadioButton
+                        android:id="@+id/sneeze_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None"
+                        />  // android:onClick="onRadioButtonClicked" />
 
-                <RadioButton
-                    android:id="@+id/sneeze_severe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Severe"
-                    />  // android:onClick="onRadioButtonClicked" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/sneeze_mild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mild"
+                        />  // android:onClick="onRadioButtonClicked" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Submit"
-                android:id="@+id/symSubmitButton"
-                android:onClick="symClicker"
-                android:textColor="@color/textGray"
-                android:background="@drawable/buttonstyle"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
+                    <RadioButton
+                        android:id="@+id/sneeze_moderate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate"
+                        />  // android:onClick="onRadioButtonClicked" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/nasalLayout"
-            android:layout_below="@+id/sneezeLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp">
+                    <RadioButton
+                        android:id="@+id/sneeze_severe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Severe"
+                        />  // android:onClick="onRadioButtonClicked" />
+                </RadioGroup>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Nasal Obstruction"
-                android:id="@+id/nasalView"
-                android:gravity="center_vertical|center_horizontal"
-                android:textColor="@color/textPurple"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+            </RelativeLayout>
 
-            <RadioGroup
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@+id/nasalView"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/nasalLayout"
+                android:layout_below="@+id/sneezeLayout"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:id="@+id/nasalGroup"
-                android:baselineAligned="true" >
+                android:layout_marginTop="10dp">
 
-                <RadioButton
-                    android:id="@+id/nasal_none"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="None"
-                    />  // android:onClick="onRadioButtonClicked" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Nasal Obstruction"
+                    android:id="@+id/nasalView"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/textPurple"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
-                <RadioButton
-                    android:id="@+id/nasal_mild"
+                <RadioGroup
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/nasalView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/nasalGroup"
+                    android:baselineAligned="true" >
+
+                    <RadioButton
+                        android:id="@+id/nasal_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None"
+                        />  // android:onClick="onRadioButtonClicked" />
+
+                    <RadioButton
+                        android:id="@+id/nasal_mild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mild"
+                        />  // android:onClick="onRadioButtonClicked" />
+
+                    <RadioButton
+                        android:id="@+id/nasal_moderate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate"
+                        />  // android:onClick="onRadioButtonClicked" />
+
+                    <RadioButton
+                        android:id="@+id/nasal_severe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Severe"
+                        />  // android:onClick="onRadioButtonClicked" />
+                </RadioGroup>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:id="@+id/asthemaLayout"
+                android:layout_below="@+id/nasalLayout"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mild"
-                    />  // android:onClick="onRadioButtonClicked" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Asthema"
+                    android:id="@+id/AsthemaView"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/textPurple"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
-                <RadioButton
-                    android:id="@+id/nasal_moderate"
+                <RadioGroup
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/AsthemaView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/AsthemaGroup"
+                    android:baselineAligned="true" >
+
+                    <RadioButton
+                        android:id="@+id/asthema_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None" />
+
+                    <RadioButton
+                        android:id="@+id/asthema_mild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mild" />
+
+                    <RadioButton
+                        android:id="@+id/asthema_moderate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate" />
+
+                    <RadioButton
+                        android:id="@+id/asthema_severe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Severe" />
+                </RadioGroup>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:id="@+id/chestLayout"
+                android:layout_below="@+id/asthemaLayout"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Moderate"
-                    />  // android:onClick="onRadioButtonClicked" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Chest Pain"
+                    android:id="@+id/chestpainview"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/textPurple"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
-                <RadioButton
-                    android:id="@+id/nasal_severe"
-                    android:layout_width="wrap_content"
+                <RadioGroup
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Severe"
-                    />  // android:onClick="onRadioButtonClicked" />
-            </RadioGroup>
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/chestpainview"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/chestGroup"
+                    android:baselineAligned="true" >
+
+                    <RadioButton
+                        android:id="@+id/chest_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None" />
+
+                    <RadioButton
+                        android:id="@+id/chest_mild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mild" />
+
+                    <RadioButton
+                        android:id="@+id/chest_moderate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate" />
+
+                    <RadioButton
+                        android:id="@+id/chest_severe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Severe" />
+                </RadioGroup>
+
+            </RelativeLayout>
+
         </RelativeLayout>
+    </ScrollView>
 
-    </RelativeLayout>
-</ScrollView>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Grade Your Symptoms"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/symptomView"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@color/textPurple"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/symSubmitButton"
+        android:onClick="symClicker"
+        android:textColor="@color/textGray"
+        android:background="@drawable/buttonstyle"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
