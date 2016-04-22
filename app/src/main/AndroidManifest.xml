@@ -39,6 +39,14 @@
                 android:value="com.newbies.aircheck.UserInput" />
         </activity>
         />
+
+        <activity android:name=".DataGetter">
+            android:parentActivityName=".MainActivity"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.newbies.aircheck.UserInput" />
+        </activity>
+
         <activity android:name=".UserSymptom">
             android:parentActivityName=".MainActivity"
             <meta-data
@@ -50,6 +58,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.newbies.aircheck.UserInput" />
+
         </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

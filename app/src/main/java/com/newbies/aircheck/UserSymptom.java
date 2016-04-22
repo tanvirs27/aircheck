@@ -59,7 +59,7 @@ public class UserSymptom extends AppCompatActivity {
     RadioButton[] valBtn;
     Random r;
     String location, name, curdate, curtime, country;
-    int age;
+    int age,humidity;
     int val[];
     int selectedId[];
     Button symSubmitButton;
@@ -87,6 +87,11 @@ public class UserSymptom extends AppCompatActivity {
         age = extras.getInt("age");
         location = extras.getString("location");
         country = extras.getString("country");
+        humidity= extras.getInt("humidity");
+
+
+        Log.d("rifat",Integer.toString(humidity));
+
         val = new int[symptomNumber];
         selectedId = new int[symptomNumber];
         valBtn = new RadioButton[symptomNumber];
@@ -225,6 +230,9 @@ public class UserSymptom extends AppCompatActivity {
         sendData+=age+" "+servLoc+" "+servCountry;
         for(int i=0;i<symptomNumber;i++)
             sendData+=" "+val[i];
+
+        sendData+=" "+humidity;
+
         HttpSend httas = new HttpSend();
         httas.execute(sendData);
     }
