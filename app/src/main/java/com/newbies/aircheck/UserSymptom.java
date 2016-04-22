@@ -166,13 +166,9 @@ public class UserSymptom extends AppCompatActivity {
         SimpleDateFormat time = new SimpleDateFormat("HH:MM:SS aa");
         curdate = date.format(new Date());
         curtime = time.format(new Date());
-        double air_quality = r.nextDouble() * 100;
-        double ash_plumes = r.nextDouble() * 70;
-        double smoke_plumes = r.nextDouble() * 20;
-        double relative_humidity = r.nextDouble() * 400;
 
         boolean res = db.insertData(curdate, curtime,
-                age, location, country, val[0], val[1], val[2], val[3],val[4],val[5], air_quality, ash_plumes, smoke_plumes, relative_humidity);
+                age, location, country, val[0], val[1], val[2], val[3],val[4],val[5]);
         if (res == true)
             Toast.makeText(UserSymptom.this, "Data Inserted", Toast.LENGTH_LONG).show();
         else
@@ -194,7 +190,7 @@ public class UserSymptom extends AppCompatActivity {
             for(int j=0; j<symptomGrade; j++)
                 stat[i][j] = 0;
         while (cursor.moveToNext()) {
-            stringBuffer.append("TIME: " + cursor.getString(1) + "\n" + "DATE: " + cursor.getString(2) + "\n\n");
+            /*stringBuffer.append("TIME: " + cursor.getString(1) + "\n" + "DATE: " + cursor.getString(2) + "\n\n");
             stringBuffer.append("Age :" + cursor.getString(3) + "\n");
             stringBuffer.append("Location :" + cursor.getString(4) + "\n");
             stringBuffer.append("Country :" + cursor.getString(5) + "\n");
@@ -208,15 +204,22 @@ public class UserSymptom extends AppCompatActivity {
             stringBuffer.append("Ash plumes  :" + cursor.getString(13) + "\n");
             stringBuffer.append("Smoke plumes :" + cursor.getString(14) + "\n");
             stringBuffer.append("Relative humidity :" + cursor.getString(15) + "\n");
-            stringBuffer.append("\n");
+            stringBuffer.append("\n");*/
+            stringBuffer.append(cursor.getString(0)+" \n");
         }
         //showMessage("Your Personal Records :", stringBuffer.toString());
         cursor.close();
         db.close();
         String sendData="";
+        int length=location.length();
+        if(location.charAt(length-1)==' ')
+            location=location.substring(0,length-1);
         //sendData=name.toLowerCase();
         String servLoc=location.toLowerCase();
         servLoc=servLoc.replace(' ','_');
+        length=country.length();
+        if(country.charAt(length-1)==' ')
+            country=country.substring(0,length-1);
         String servCountry=country.toLowerCase();
         servCountry=servCountry.replace(' ','_');
         sendData+=age+" "+servLoc+" "+servCountry;
