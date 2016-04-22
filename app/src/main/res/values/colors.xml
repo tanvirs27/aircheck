@@ -12,10 +12,10 @@
     <color name="borderCream">#dfd720</color>
     <color name="borderGreen">#5e7974</color>
     <color name="textBlue">#050059</color>
-    <color name="textGreen">#1d3330</color>
+    <color name="textGreen">#509316</color>
     <color name="textGray">#0a0909</color>
     <color name="textPurple1">#673ab7</color>
-    <color name="textPurple">#509316</color>
+    <color name="textPurple">#595c57</color>
     <color name="actionbar_background">#fff</color>
 
 
@@ -28,7 +28,11 @@
     <color name="main1">#77ae3c</color>
     <color name="main2">#568b24</color>
     <color name="main3">#9cca5c</color>
-    <color name="main4">#abd771</color>
+    <color name="main4">#a9d045</color>
+    <color name="main91">#77ae3c</color>
+    <color name="main92">#568b24</color>
+    <color name="main93">#9cca5c</color>
+    <color name="main94">#abd771</color>
     <color name="main11">#513cae</color>
     <color name="main21">#37248b</color>
     <color name="main31">#705cca</color>

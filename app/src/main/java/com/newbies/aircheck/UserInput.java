@@ -8,7 +8,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -21,19 +20,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -67,7 +62,7 @@ public class UserInput extends AppCompatActivity implements
         setTitle(R.string.userinput);
        // getActionBar().setIcon(R.drawable.ic_action_user_input);
         setContentView(R.layout.activity_user_input);
-        nameText=(EditText)findViewById(R.id.nameText);
+        nameText=(EditText)findViewById(R.id.locxText);
         ageText=(EditText)findViewById(R.id.ageText);
         locationText=(EditText)findViewById(R.id.locationText);
         countryText=(EditText)findViewById(R.id.countryText);

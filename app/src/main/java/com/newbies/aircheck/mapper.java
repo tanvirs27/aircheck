@@ -4,9 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class mapper extends AppCompatActivity {
 
@@ -18,11 +21,11 @@ public class mapper extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled( true );
         setTitle(R.string.nearme);
-        //getActionBar().setIcon(R.drawable.home);
         myWebView = (WebView) findViewById(R.id.webView);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebViewClient(new WebViewClient());
+
 
     //    myWebView.loadUrl("https://www.google.com.bd/maps/@23.7288312,90.3988565,20z?hl=bn");
         myWebView.loadUrl("http://aqicn.org/city/bangladesh/dhaka/us-consulate/");

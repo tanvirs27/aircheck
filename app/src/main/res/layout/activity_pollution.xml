@@ -14,20 +14,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Stats near Dhaka"
+        android:text="Pollution Stats"
         android:id="@+id/statView"
         android:textColor="@color/textPurple"
         android:textSize="35dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/locSubmitButton"
+        android:onClick="locReq"
+        android:textColor="@color/textPurple"
+        android:background="@drawable/buttonstyle"
+        android:layout_below="@+id/statView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="63dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locReqText"
+        android:hint="Enter a location to check"
+        android:layout_below="@+id/statView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/polView"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/statView"
         android:textColor="@color/textPurple"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/locSubmitButton" />
+
 </RelativeLayout>
