@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.*;
 import android.database.Cursor;
 import android.database.sqlite.*;
+import android.widget.RadioGroup;
 
 
 public class database extends SQLiteOpenHelper{
@@ -45,7 +46,7 @@ public class database extends SQLiteOpenHelper{
         // db.execSQL("DELETE FROM "+table);
         db.execSQL("create table " + table + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "date TEXT, time TEXT,age INTEGER, location TEXT,country TEXT, itchy_eye INTEGER, " +
-                "cough INTEGER, sneeze INTEGER, nasal_obstruction INTEGER, asthma INTEGER, chest_pain INTEGER " +
+                "cough INTEGER, sneeze INTEGER, nasal_obstruction INTEGER, asthma INTEGER, chest_pain INTEGER, " +
                 " airquality REAL, ashplumes REAL, "+
                 "smokeplumes REAL , relativehumidity REAL)");
 
@@ -89,7 +90,7 @@ public class database extends SQLiteOpenHelper{
     public Cursor getData(String location,int[] val)
     {
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("select count("+val[0] +") from first_db ", null);
+        Cursor cursor = db.rawQuery("select count(*) from first_db where "+ col1 +"= 1", null);
         return cursor;
     }
 }

@@ -54,7 +54,7 @@ public class UserSymptom extends AppCompatActivity {
     final int chest_pain = 5;
 
     String Symptom[] = {"None", "Mild", "Moderate", "Severe"};
-    RadioGroup[] symGroup;
+    static RadioGroup[] symGroup;
     RadioButton[][] symBtn;
     RadioButton[] valBtn;
     Random r;
