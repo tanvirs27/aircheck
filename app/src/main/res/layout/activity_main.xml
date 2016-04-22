@@ -111,7 +111,7 @@
 
                 android:textSize="25sp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/nearme" />
+                android:text="My Info" />
         </FrameLayout>
 
         <FrameLayout

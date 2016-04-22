@@ -28,7 +28,7 @@ public class database extends SQLiteOpenHelper{
     public static final String col11 = "asthma";
     public static final String col12 = "chest_pain";
 
-    private static final int db_version = 3;
+    private static final int db_version = 4;
     database (Context context)
     {
         super(context, db_name, null, db_version);
@@ -38,7 +38,7 @@ public class database extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        db.execSQL("drop table "+table);
+        //db.execSQL("drop table "+table);
         // db.execSQL("DELETE FROM "+table);
         db.execSQL("create table " + table + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "date TEXT, time TEXT,age INTEGER, location TEXT, country TEXT, itchy_eye INTEGER, " +
