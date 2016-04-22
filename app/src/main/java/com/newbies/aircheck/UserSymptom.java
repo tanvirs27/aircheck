@@ -43,13 +43,16 @@ import java.util.Date;
 import java.util.Random;
 
 public class UserSymptom extends AppCompatActivity {
-
     final int symptomNumber = 6;
     final int symptomGrade = 4;
+    double[][] stat;
     final int eye = 0;
     final int cough = 1;
     final int sneeze = 2;
     final int nasal = 3;
+    final int asthma = 4;
+    final int chest_pain = 5;
+
     String Symptom[] = {"None", "Mild", "Moderate", "Severe"};
     RadioGroup[] symGroup;
     RadioButton[][] symBtn;
@@ -77,6 +80,7 @@ public class UserSymptom extends AppCompatActivity {
         setTitle(R.string.usersymptom);
         //getActionBar().setIcon(R.drawable.ic_action_user_input);
         db = new database(this);
+        stat= new double[symptomNumber][symptomGrade];
         db.getWritableDatabase();
         Bundle extras = getIntent().getExtras();
         name = extras.getString("name");
@@ -168,7 +172,7 @@ public class UserSymptom extends AppCompatActivity {
         double relative_humidity = r.nextDouble() * 400;
 
         boolean res = db.insertData(curdate, curtime,
-                age, location, country, val[0], val[1], val[2], val[3], air_quality, ash_plumes, smoke_plumes, relative_humidity);
+                age, location, country, val[0], val[1], val[2], val[3],val[4],val[5], air_quality, ash_plumes, smoke_plumes, relative_humidity);
         if (res == true)
             Toast.makeText(UserSymptom.this, "Data Inserted", Toast.LENGTH_LONG).show();
         else
@@ -178,13 +182,17 @@ public class UserSymptom extends AppCompatActivity {
     }
 
     public void onclickshow() {
-        Cursor cursor = db.getData();
+        Cursor cursor = db.getData(location,val);
         if (cursor.getCount() == 0) {
             showMessage("Error", "Data not found");
             return;
         }
 
         StringBuffer stringBuffer = new StringBuffer();
+        double total_count = 0;
+        for(int i=0; i<symptomNumber; i++)
+            for(int j=0; j<symptomGrade; j++)
+                stat[i][j] = 0;
         while (cursor.moveToNext()) {
             stringBuffer.append("TIME: " + cursor.getString(1) + "\n" + "DATE: " + cursor.getString(2) + "\n\n");
             stringBuffer.append("Age :" + cursor.getString(3) + "\n");
@@ -194,18 +202,24 @@ public class UserSymptom extends AppCompatActivity {
             stringBuffer.append("Cough :" + cursor.getString(7) + "\n");
             stringBuffer.append("Sneeze :" + cursor.getString(8) + "\n");
             stringBuffer.append("Nasal obstruction :" + cursor.getString(9) + "\n");
-            stringBuffer.append("Air quality :" + cursor.getString(10) + "\n");
-            stringBuffer.append("Ash plumes  :" + cursor.getString(11) + "\n");
-            stringBuffer.append("Smoke plumes :" + cursor.getString(12) + "\n");
-            stringBuffer.append("Relative humidity :" + cursor.getString(13) + "\n");
+            stringBuffer.append("Asthema :" + cursor.getString(10) + "\n");
+            stringBuffer.append("Chest Pain :" + cursor.getString(11) + "\n");
+            stringBuffer.append("Air quality :" + cursor.getString(12) + "\n");
+            stringBuffer.append("Ash plumes  :" + cursor.getString(13) + "\n");
+            stringBuffer.append("Smoke plumes :" + cursor.getString(14) + "\n");
+            stringBuffer.append("Relative humidity :" + cursor.getString(15) + "\n");
             stringBuffer.append("\n");
         }
         //showMessage("Your Personal Records :", stringBuffer.toString());
         cursor.close();
         db.close();
         String sendData="";
-        sendData=name.toLowerCase();
-        sendData+=" "+age+" "+location.toLowerCase()+" "+country.toLowerCase();
+        //sendData=name.toLowerCase();
+        String servLoc=location.toLowerCase();
+        servLoc=servLoc.replace(' ','_');
+        String servCountry=country.toLowerCase();
+        servCountry=servCountry.replace(' ','_');
+        sendData+=age+" "+servLoc+" "+servCountry;
         for(int i=0;i<symptomNumber;i++)
             sendData+=" "+val[i];
         HttpSend httas = new HttpSend();
