@@ -40,7 +40,7 @@
 
                 android:textSize="25sp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/userinput" />
+                android:text="My Symptoms" />
         </FrameLayout>
 
         <FrameLayout
@@ -111,7 +111,7 @@
 
                 android:textSize="25sp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="My Info" />
+                android:text="My Stats" />
         </FrameLayout>
 
         <FrameLayout
