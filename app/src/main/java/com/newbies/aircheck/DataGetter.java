@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.InputStream;
+import java.util.Random;
 
 public class DataGetter extends AppCompatActivity {
 
@@ -30,6 +31,7 @@ public class DataGetter extends AppCompatActivity {
     TextView textView;
     int humidity;
     double longitude,latitude;
+    Random rand;
 
     int hum_r[]={0,1,2,4,6,8,10,12,13,15,17,19,21,24,25,26,28,30,32,35,36,37,39,41,43,46,47,48,50,52,54,57,59, 60, 61, 63, 65, 68, 70, 71,72,74,76,79,86,93,96,100,107,114,121,128,133,136,142,149,156,164,170,174,178,185,192,199,206,210,214,220,227,234,242,242,242,242,243,243,244,244,244,245,245,246,246,247,247,247,248,248,248,249,249,249,250,250,251,251,252,252,252,253};
     int hum_g[]={17,20,24,30,36,43,50,54,58,63,69,76,83,89,92,96,102,109,116,122,127,130,136,142,149,155,161,165,169,175,182,188,195,199,203,208,215,221,228,233,237,241,248,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,246,241,236,227,218,209,200,194,189,182,173,163,154,147,142,136,127,118,109,100,95,91,81,72,63,54,47,43,36};
@@ -43,6 +45,7 @@ public class DataGetter extends AppCompatActivity {
         setContentView(R.layout.activity_data_getter);
 
         picture= null;
+        rand= new Random();
 
         Bundle extras = getIntent().getExtras();
         name = extras.getString("name");
@@ -67,7 +70,11 @@ public class DataGetter extends AppCompatActivity {
 
     private void urlmaker(){
 
-        String time="2016098";
+        String time="20160";
+
+        int x=rand.nextInt(90)+10;
+        time+=x;
+
         String address=longitude+","+latitude+","+(longitude+1)+","+(latitude+1);
         String url1="http://map2.vis.earthdata.nasa.gov/image-download?TIME=";
         String url2="&extent=";
@@ -137,7 +144,7 @@ public class DataGetter extends AppCompatActivity {
             intent.putExtra("country", country);
             intent.putExtra("humidity", humidity);
             startActivity(intent);
-
+            finish();
         }
 
         void setRGB(){
