@@ -36,6 +36,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,7 +53,7 @@ public class UserInput extends AppCompatActivity implements
     LocationRequest mLocationRequest;
     LocationManager locationManager;
     TextView tvLatlong,tvCity,tvCountry;
-    double longitude,latitude;
+    double longitude=0,latitude=0;
 
     String location,name,country;
     int age;
@@ -127,11 +128,19 @@ public class UserInput extends AppCompatActivity implements
             exitPrompt();
             return;
         }
+
+        if(longitude==0.0 && latitude==0.0){
+            getlong();
+        }
+
         Intent intent=new Intent(UserInput.this,DataGetter.class);
-        intent.putExtra("name",name);
+        intent.putExtra("name", name);
         intent.putExtra("age",age);
         intent.putExtra("location",location);
         intent.putExtra("country",country);
+        intent.putExtra("long",longitude);
+        intent.putExtra("lat",latitude);
+
         startActivity(intent);
         finish();
     }
@@ -170,6 +179,24 @@ public class UserInput extends AppCompatActivity implements
 
     }
 
+    public void getlong(){
+        Geocoder coder = new Geocoder(this);
+
+        Log.i("rifat","in getlong");
+        try {
+            ArrayList<Address> adresses = (ArrayList<Address>) coder.getFromLocationName(location, 50);
+            for(Address add : adresses){
+
+                longitude = add.getLongitude();
+                latitude = add.getLatitude();
+
+                Log.i("rifat",longitude+" "+latitude);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void onClickGps(View view){
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -177,13 +204,13 @@ public class UserInput extends AppCompatActivity implements
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
 
-        Toast.makeText(UserInput.this, "onClickGps",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(UserInput.this, "onClickGps",Toast.LENGTH_SHORT).show();
 
         if (mLastLocation != null) {
             latitude= mLastLocation.getLatitude();
             longitude= mLastLocation.getLongitude();
 
-            Toast.makeText(UserInput.this, "inside if",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(UserInput.this, "inside if",Toast.LENGTH_SHORT).show();
 
             // tvLatlong.setText("Latitude: "+ String.valueOf(latitude)+" Longitude: "+
             //         String.valueOf(longitude));

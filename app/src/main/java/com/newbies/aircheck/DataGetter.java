@@ -19,7 +19,8 @@ import java.io.InputStream;
 
 public class DataGetter extends AppCompatActivity {
 
-    String URL = "http://map2.vis.earthdata.nasa.gov/image-download?TIME=2016103&extent=167,42,168,43&epsg=4326&layers=AIRS_RelativeHumidity_400hPa_Day&opacities=1&worldfile=false&format=image/jpeg&width=48&height=64";
+   // String URL = "http://map2.vis.earthdata.nasa.gov/image-download?TIME=2016103&extent=167,42,168,43&epsg=4326&layers=AIRS_RelativeHumidity_400hPa_Day&opacities=1&worldfile=false&format=image/jpeg&width=48&height=64";
+    String URL=null;
     ImageView image;
     Button button;
     ProgressDialog mProgressDialog;
@@ -28,6 +29,8 @@ public class DataGetter extends AppCompatActivity {
     int age;
     TextView textView;
     int humidity;
+    double longitude,latitude;
+
     int hum_r[]={0,1,2,4,6,8,10,12,13,15,17,19,21,24,25,26,28,30,32,35,36,37,39,41,43,46,47,48,50,52,54,57,59, 60, 61, 63, 65, 68, 70, 71,72,74,76,79,86,93,96,100,107,114,121,128,133,136,142,149,156,164,170,174,178,185,192,199,206,210,214,220,227,234,242,242,242,242,243,243,244,244,244,245,245,246,246,247,247,247,248,248,248,249,249,249,250,250,251,251,252,252,252,253};
     int hum_g[]={17,20,24,30,36,43,50,54,58,63,69,76,83,89,92,96,102,109,116,122,127,130,136,142,149,155,161,165,169,175,182,188,195,199,203,208,215,221,228,233,237,241,248,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,246,241,236,227,218,209,200,194,189,182,173,163,154,147,142,136,127,118,109,100,95,91,81,72,63,54,47,43,36};
     int hum_b[]={255,254,254,254,254,254,254,254,254,254,254,254,254,254,254,253,253,253,253,253,253,253,253,253,253,253,253,253,253,253,252,252,252,252,252,252,252,252,252,252,252,252,252,252,241,230,223,218,208,197,186,175,166,161,153,142,131,120,109,104,98,87,76,65,54,46,40,32,21,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -46,10 +49,33 @@ public class DataGetter extends AppCompatActivity {
         age = extras.getInt("age");
         location = extras.getString("location");
         country = extras.getString("country");
+        longitude= extras.getDouble("long");
+        latitude= extras.getDouble("lat");
+
+        if(longitude==0.0 && latitude==0.0){
+            longitude=50;
+            latitude=50;
+        }
+
+
+        urlmaker();
 
         new DownloadImage().execute(URL);
 
 
+    }
+
+    private void urlmaker(){
+
+        String time="2016098";
+        String address=longitude+","+latitude+","+(longitude+1)+","+(latitude+1);
+        String url1="http://map2.vis.earthdata.nasa.gov/image-download?TIME=";
+        String url2="&extent=";
+        String url3="&epsg=4326&layers=AIRS_RelativeHumidity_400hPa_Day&opacities=1&worldfile=false&format=image/jpeg&width=48&height=64";
+
+        URL= url1+time+url2+address+url3;
+
+        Log.d("rifat",URL);
     }
 
     // DownloadImage AsyncTask
