@@ -127,7 +127,7 @@ public class UserInput extends AppCompatActivity implements
             exitPrompt();
             return;
         }
-        Intent intent=new Intent(UserInput.this,UserSymptom.class);
+        Intent intent=new Intent(UserInput.this,DataGetter.class);
         intent.putExtra("name",name);
         intent.putExtra("age",age);
         intent.putExtra("location",location);
