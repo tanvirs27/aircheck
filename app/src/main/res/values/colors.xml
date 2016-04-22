@@ -15,7 +15,7 @@
     <color name="textGreen">#509316</color>
     <color name="textGray">#0a0909</color>
     <color name="textPurple1">#673ab7</color>
-    <color name="textPurple">#595c57</color>
+    <color name="textPurple">#0c0c0b</color>
     <color name="actionbar_background">#fff</color>
 
 
@@ -24,7 +24,8 @@
     <color name="mainCyan">#5CF0E4</color>
     <color name="mainWhite">#ffffff</color>
     <color name="mainGray">#707070</color>
-    <color name="mainKolaPata">#bfe954</color>
+    <color name="mainKolaPata1">#b4d443</color>
+    <color name="mainKolaPata">#eceabb</color>
     <color name="main1">#77ae3c</color>
     <color name="main2">#568b24</color>
     <color name="main3">#9cca5c</color>

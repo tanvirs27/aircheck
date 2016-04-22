@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="0dp"
     tools:context="com.newbies.aircheck.UserInput"
-    android:background="@color/main4"
+    android:background="@color/mainKolaPata"
     android:layout_alignParentTop="true"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
