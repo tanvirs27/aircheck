@@ -135,6 +135,7 @@ public class UserInput extends AppCompatActivity implements
         intent.putExtra("country",country);
         intent.putExtra("long",longitude);
         intent.putExtra("lat",latitude);
+        intent.putExtra("choice",1);
 
         startActivity(intent);
         finish();

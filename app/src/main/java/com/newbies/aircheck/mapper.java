@@ -1,47 +1,80 @@
 package com.newbies.aircheck;
 
+import android.content.Context;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class mapper extends AppCompatActivity {
+import java.io.IOException;
+import java.util.ArrayList;
 
-    WebView myWebView;
+public class mapper extends AppCompatActivity {
+    String location,userLocation,servReq;
+    EditText hlthReqText;
+    double longitude,latitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapper);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled( true );
-        setTitle(R.string.nearme);
-        myWebView = (WebView) findViewById(R.id.webView);
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        myWebView.setWebViewClient(new WebViewClient());
+        setTitle("Health Predictor");
 
-
-    //    myWebView.loadUrl("https://www.google.com.bd/maps/@23.7288312,90.3988565,20z?hl=bn");
-        myWebView.loadUrl("http://aqicn.org/city/bangladesh/dhaka/us-consulate/");
-        //myWebView.loadUrl("https://worldview.earthdata.nasa.gov/?p=geographic&l=VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor,AIRS_Prata_SO2_Index_Night,AIRS_Prata_SO2_Index_Day,AIRS_CO_Total_Column_Night,AIRS_CO_Total_Column_Day,MODIS_Terra_Aerosol,Reference_Labels(hidden),Reference_Features(hidden),Coastlines&t=2016-03-27&v=-432.9905721991639,-177.9888915296982,335.3844278008361,197.1986084703018");
+        hlthReqText=(EditText)findViewById(R.id.hlthReqText);
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // Check if the key event was the Back button and if there's history
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
-            myWebView.goBack();
-            return true;
+    public void getlong(){
+        Geocoder coder = new Geocoder(this);
+
+        Log.i("rifat","in getlong");
+        try {
+            ArrayList<Address> adresses = (ArrayList<Address>) coder.getFromLocationName(location, 50);
+            for(Address add : adresses){
+
+                longitude = add.getLongitude();
+                latitude = add.getLatitude();
+
+                Log.i("rifat",longitude+" "+latitude);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        // If it wasn't the Back key or there's no web page history, bubble up to the default
-        // system behavior (probably exit the activity)
-        return super.onKeyDown(keyCode, event);
+    }
+
+    public void hlthReq(View v)
+    {
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+        location= hlthReqText.getText().toString();
+        userLocation=location;
+        getlong();
+        Intent intent=new Intent(mapper.this,DataGetter.class);
+        intent.putExtra("name", "Fahim");
+        intent.putExtra("age","20");
+        intent.putExtra("location",location);
+        intent.putExtra("country","bangladesh");
+        intent.putExtra("long",longitude);
+        intent.putExtra("lat",latitude);
+        intent.putExtra("choice",2);
+        startActivity(intent);
+        finish();
+        //servReq(location);
     }
 
     @Override

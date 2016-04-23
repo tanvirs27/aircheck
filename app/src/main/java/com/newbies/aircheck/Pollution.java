@@ -77,7 +77,7 @@ public class Pollution extends AppCompatActivity {
     }
 
     public void showMessage(String message) {
-        //polView.setText(message);
+        polView.setText(message);
     }
 
     public void locReq(View v)
@@ -242,10 +242,6 @@ public class Pollution extends AppCompatActivity {
         void printer()
         {
             Runnable runnable = new Runnable() {
-                String pol=
-                        "Concentration of Sulphur Di Oxide in Dhaka has been recorded at 365 microgram per cubic meter of air.23% people in Dhaka suffer from mild Nasal Obstruction.\n" +
-                                "\n\nConcentration of Ozone in Dhaka has been recorded at 235 microgram per cubic meter of air.37% people in Dhaka reported mild to moderate eye irritation.\n" +
-                                "\n\nConcentration of Nitrogen Di Oxide in Dhaka has been recorded at 100 microgram per cubic meter of air.11% people in Dhaka suffer from severe Nasal Obstruction .\n" ;
                 String stat=results[0]+"\n"+results[1]+"\n"+results[2]+"\n"+results[3]+"\n"+results[4]+"\n"+results[5]+"\n";
 
                 @Override

@@ -3,8 +3,8 @@
     package="com.newbies.aircheck">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -39,14 +39,12 @@
                 android:value="com.newbies.aircheck.UserInput" />
         </activity>
         />
-
         <activity android:name=".DataGetter">
             android:parentActivityName=".MainActivity"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.newbies.aircheck.UserInput" />
         </activity>
-
         <activity android:name=".UserSymptom">
             android:parentActivityName=".MainActivity"
             <meta-data
@@ -58,12 +56,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.newbies.aircheck.UserInput" />
-
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        </activity>
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".Predictor"></activity>
     </application>
 
 </manifest>

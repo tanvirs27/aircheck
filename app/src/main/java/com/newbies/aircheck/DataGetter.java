@@ -29,7 +29,7 @@ public class DataGetter extends AppCompatActivity {
     String location, name, curdate, curtime, country;
     int age;
     TextView textView;
-    int humidity;
+    int humidity,choice;
     double longitude,latitude;
     Random rand;
 
@@ -54,7 +54,7 @@ public class DataGetter extends AppCompatActivity {
         country = extras.getString("country");
         longitude= extras.getDouble("long");
         latitude= extras.getDouble("lat");
-
+        choice=extras.getInt("choice");
         if(longitude==0.0 && latitude==0.0){
             longitude=50;
             latitude=50;
@@ -136,14 +136,22 @@ public class DataGetter extends AppCompatActivity {
             // Close progressdialog
             mProgressDialog.dismiss();
 
-
-            Intent intent= new Intent(DataGetter.this,UserSymptom.class);
-            intent.putExtra("name",name);
-            intent.putExtra("age",age);
-            intent.putExtra("location", location);
-            intent.putExtra("country", country);
-            intent.putExtra("humidity", humidity);
-            startActivity(intent);
+            if(choice==1) {
+                Intent intent = new Intent(DataGetter.this, UserSymptom.class);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
+                intent.putExtra("location", location);
+                intent.putExtra("country", country);
+                intent.putExtra("humidity", humidity);
+                startActivity(intent);
+            }
+            else
+            {
+                Intent intent=new Intent(DataGetter.this, Predictor.class);
+                intent.putExtra("humidity",humidity);
+                intent.putExtra("location",location);
+                startActivity(intent);
+            }
             finish();
         }
 
@@ -163,7 +171,8 @@ public class DataGetter extends AppCompatActivity {
         void checker(int x,int y,int z){
             int index=0;
             int sum= Math.abs(hum_r[0]-x)+Math.abs(hum_g[0]-y)+Math.abs(hum_b[0]-z);
-            for(int i=1;i<100;i++){
+            for(int i=1;i<100;i++)
+            {
                 int sum1= Math.abs(hum_r[i]-x)+Math.abs(hum_g[i]-y)+Math.abs(hum_b[i]-z);
                 if(sum1<sum)
                 {

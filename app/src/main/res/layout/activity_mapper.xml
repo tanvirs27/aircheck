@@ -9,11 +9,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.newbies.aircheck.mapper">
 
-    <WebView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Health Risk Predictions"
+        android:id="@+id/hlthView"
+        android:textColor="@color/textPurple"
+        android:textSize="30dp"
+        android:layout_above="@+id/hlthReqText"
+        android:layout_centerHorizontal="true" />
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/webView"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/hlthSubmitButton"
+        android:onClick="hlthReq"
+        android:textColor="@color/textPurple"
+        android:background="@drawable/buttonstyle"
+        android:layout_below="@+id/hlthReqText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hlthReqText"
+        android:hint="Enter a location to get health predictions"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
