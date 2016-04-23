@@ -16,7 +16,7 @@
     </style>
 
     <style name="MyActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/textGreen</item>
+        <item name="android:textColor">@color/textPurple</item>
     </style>
 
     <style name="MyActionBar.MenuTextStyle"

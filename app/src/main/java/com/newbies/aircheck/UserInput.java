@@ -214,10 +214,8 @@ public class UserInput extends AppCompatActivity implements
             getAddress();
         }
         else if(mLastLocation== null){
-            Toast.makeText(UserInput.this, "null",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(UserInput.this, "null",Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
 

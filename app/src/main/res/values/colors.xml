@@ -40,8 +40,9 @@
     <color name="main41">#8d79e7</color>
     <color name="mainPrimary">#3F51B5</color>
     <color name="mainPrimaryDark">#303F9F</color>
-    <color name="mainBG">#EFE4B0</color>
+    <color name="mainBG">#efe4b0</color>
 
     <color name="mainSky">#4995eb</color>
     <color name="main5">#b5aae4</color>
+    <color name="bkDarkCream">#dfd5a5</color>
 </resources>
