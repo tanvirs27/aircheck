@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Pollution Stats"
+        android:text="Symptom Stats"
         android:id="@+id/statView"
         android:textColor="@color/textPurple"
         android:textSize="35dp"

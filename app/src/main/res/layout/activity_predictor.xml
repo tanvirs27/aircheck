@@ -38,7 +38,6 @@
         android:id="@+id/humidityView"
         android:textColor="@color/textPurple"
         android:textSize="20dp"
-        android:text="Local Relative Humidity : "
         android:layout_below="@+id/hlthView"
         android:layout_alignRight="@+id/hlthView"
         android:layout_alignEnd="@+id/hlthView"

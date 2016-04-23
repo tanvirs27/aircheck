@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,23 +26,41 @@ public class Predictor extends AppCompatActivity {
     String[] val,results;
     String location;
     String sendData;
+    int[] nope;
     ProgressDialog pDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_predictor);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled( true );
+        setTitle("Health Predictor");
         hlthPredView= (TextView) findViewById(R.id.hlthPredView);
+        hlthPredView.setMovementMethod(new ScrollingMovementMethod());
         humidityView=(TextView)findViewById(R.id.humidityView);
         Bundle extras = getIntent().getExtras();
         humidity=extras.getInt("humidity");
         location=extras.getString("location");
         sendData=Integer.toString(humidity);
         val=new String[symptomNumber];
+        nope=new int[symptomNumber];
         results=new String[symptomNumber];
         HttpSend httas = new HttpSend();
         httas.execute(sendData);
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+    }
+
     private class HttpSend extends AsyncTask<String, Void, String>
 
     {
@@ -65,6 +85,7 @@ public class Predictor extends AppCompatActivity {
             }
             return "Cannot Connect";
         }
+
 
         protected void onPostExecute(String result)
         {
@@ -92,23 +113,61 @@ public class Predictor extends AppCompatActivity {
                 val[i]=S.next();
             for(int i=0;i<symptomNumber;i++)
                 results[i]="";
-            results[0]="Itchy Eye : "+ val[0];
-            results[1]="Cough : "+ val[1];
-            results[2]="Sneezing : "+ val[2];
-            results[3]="Nasal Obstruction : "+ val[3];
-            results[4]="Asthema : "+val[4];
-            results[5]="Chest Pain : "+val[5];
+            for(int i=0;i<symptomNumber;i++)
+                nope[0]=0;
+            if(val[0].equals("none")==false)
+            {
+                nope[0]=1;
+                results[0] = "Itchy Eye : " + val[0];
+            }
+            if(val[1].equals("none")==false)
+            {
+                nope[1]=1;
+                results[1]="Cough : "+ val[1];
+            }
+            if(val[2].equals("none")==false)
+            {
+                nope[2]=1;
+                results[2]="Sneezing : "+ val[2];
+            }
+            if(val[3].equals("none")==false)
+            {
+                nope[3]=1;
+                results[3]="Nasal Obstruction : "+ val[3];
+            }
+            if(val[4].equals("none")==false)
+            {
+                nope[4]=1;
+                results[4]="Asthema : "+val[4];
+            }
+            if(val[5].equals("none")==false)
+            {
+                nope[5]=1;
+                results[5]="Chest Pain : "+val[5];
+            }
             printer();
         }
 
         void printer()
         {
+            int none=0;
+            for(int i=0;i<symptomNumber;i++)
+            {
+                none+=nope[i];
+            }
+            if(none==0)
+            {
+                hlthPredView.setText("HURRAH! You are free of any sort of health risk");
+                hlthPredView.setTextSize(15);
+                return;
+            }
             Runnable runnable = new Runnable() {
-                String stat="According to Previous user data ,you are in the health risk of the being affected by the following symptoms "+" "+results[0]+"\n"+results[1]+"\n"+results[2]+"\n"+results[3]+"\n"+results[4]+"\n"+results[5]+"\n";
+                String stat="According to Previous user data ,you are in the health risk of being affected by the following symptoms \n"+" \n"+results[0]+"\n"+results[1]+"\n"+results[2]+"\n"+results[3]+"\n"+results[4]+"\n"+results[5]+"\n";
 
                 @Override
                 public void run() {
 
+                    int k=0;
                     String printer="";
                     Scanner sc = new Scanner(stat);
                     while(sc.hasNext()){
@@ -117,7 +176,9 @@ public class Predictor extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        printer+=sc.nextLine()+"\n";
+                        printer+=sc.nextLine();
+                        if(nope[k]==1)
+                            printer+="\n";
                         final String temp = printer;
                         hlthPredView.post(new Runnable() {
                             @Override

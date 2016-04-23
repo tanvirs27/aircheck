@@ -41,10 +41,11 @@ public class Pollution extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled( true );
-        setTitle(R.string.pollution);
+        setTitle("Symptom Stats");
         setContentView(R.layout.activity_pollution);
         locReqText=(EditText)findViewById(R.id.locReqText);
         polView= (TextView) findViewById(R.id.polView);
+        polView.setMovementMethod(new ScrollingMovementMethod());
         eye=new double[symptomGrade];
         cough=new double[symptomGrade];
         sneeze=new double[symptomGrade];
@@ -77,7 +78,7 @@ public class Pollution extends AppCompatActivity {
     }
 
     public void showMessage(String message) {
-        polView.setText(message);
+        //polView.setText(message);
     }
 
     public void locReq(View v)
@@ -139,18 +140,18 @@ public class Pollution extends AppCompatActivity {
             pDialog.setIndeterminate(false);
             pDialog.show();
             parser(result);
-            showMessage(result);
         }
 
         void parser(String main)
         {
-            if(main.equals("Cannot Connect")==true)
+            if(main.equals("Cannot Connect")==true||main.equals("nodata")==true)
             {
                 pDialog.dismiss();
-                Toast.makeText(Pollution.this, "Sorry,Could not Connect with the server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Pollution.this, "Sorry,Insufficient data to analyze", Toast.LENGTH_SHORT).show();
                 return;
 
             }
+
             pDialog.dismiss();
             Scanner S=new Scanner(main);
             String city=S.next();
@@ -160,7 +161,7 @@ public class Pollution extends AppCompatActivity {
             for(int i=0;i<symptomGrade;i++)
             {
                 eye[i] = (Integer.parseInt(S.next()) * 100.0) / total;
-                if(eye[i]>maxVal[0]) {
+                if(eye[i]>=maxVal[0]) {
                     maxVal[0] = eye[i];
                     maxind[0]=i;
                 }
@@ -169,7 +170,7 @@ public class Pollution extends AppCompatActivity {
             for(int i=0;i<symptomGrade;i++)
             {
                 cough[i] = (Integer.parseInt(S.next()) * 100.0) / total;
-                if(cough[i]>maxVal[1]) {
+                if(cough[i]>=maxVal[1]) {
                     maxVal[1] = cough[i];
                     maxind[1]=i;
                 }
@@ -177,7 +178,7 @@ public class Pollution extends AppCompatActivity {
             for(int i=0;i<symptomGrade;i++)
             {
                 sneeze[i] = (Integer.parseInt(S.next()) * 100.0) / total;
-                if(sneeze[i]>maxVal[2]) {
+                if(sneeze[i]>=maxVal[2]) {
                     maxVal[2] = sneeze[i];
                     maxind[2]=i;
                 }
@@ -185,7 +186,7 @@ public class Pollution extends AppCompatActivity {
             for(int i=0;i<symptomGrade;i++)
             {
                 nasal[i] = (Integer.parseInt(S.next()) * 100.0) / total;
-                if(nasal[i]>maxVal[3]) {
+                if(nasal[i]>=maxVal[3]) {
                     maxVal[3] = nasal[i];
                     maxind[3]=i;
                 }
@@ -193,7 +194,7 @@ public class Pollution extends AppCompatActivity {
             for(int i=0;i<symptomGrade;i++)
             {
                 asthma[i]=(Integer.parseInt(S.next())*100.0)/total;
-                if(asthma[i]>maxVal[4]) {
+                if(asthma[i]>=maxVal[4]) {
                     maxVal[4] = asthma[i];
                     maxind[4]=i;
                 }
@@ -201,7 +202,7 @@ public class Pollution extends AppCompatActivity {
             for(int i=0;i<symptomGrade;i++)
             {
                 chest[i]=(Integer.parseInt(S.next())*100.0)/total;
-                if(chest[i]>maxVal[5])
+                if(chest[i]>=maxVal[5])
                 {
                     maxVal[5] = chest[i];
                     maxind[5]=i;
@@ -210,10 +211,10 @@ public class Pollution extends AppCompatActivity {
             for(int i=0;i<symptomNumber;i++)
                 results[i]="";
             results[0]+=checker(("About "+String.format( "%.2f", (eye[1]+eye[2]))+" % people experienced mild to moderate eye itchiness."),(eye[1]+eye[2]))+checker(("Only "+String.format( "%.2f", eye[3])+" % people reported severe Itchiness in the eye.\n"),eye[3]);
-            results[1]+="Coughing is pre-dominantly "+sympVal[maxind[1]]+" here.About "+String.format( "%.2f", maxVal[1])+"% people suffered from "+ sympVal[maxind[1]]+" Coughing problem.\n";
+            results[1]+=checker(("Coughing is pre-dominantly "+sympVal[maxind[1]]+" here.About "+String.format( "%.2f", maxVal[1])+"% people suffered from "+ sympVal[maxind[1]]+" Coughing problem.\n"),maxind[1]);
             //sneeze
             if(sneeze[1]!=0.0 && sneeze[2]!=0.0)
-                results[2]+="Sneezing ranged from "+String.format( "%.2f", sneeze[1])+"% to "+String.format( "%.2f", sneeze[2])+"% for mild to moderate symptoms, "+String.format( "%.2f", sneeze[3])+" reported severe sneezing.\n";
+                results[2]+="Sneezing ranged from "+String.format( "%.2f", sneeze[1])+"% to "+String.format( "%.2f", sneeze[2])+"% for mild to moderate symptoms, "+checker((String.format( "%.2f", sneeze[3])+" % reported severe sneezing.\n"),sneeze[3]);
             else
                 results[2]+=checker(("Sneezing is pre-dominantly " + sympVal[maxind[2]]+" here."),maxind[2])+checker(("About "+String.format( "%.2f", maxVal[2])+"% people suffered from "+ sympVal[maxind[2]]+" Sneezing.\n"),maxind[2]);
             //nasal
@@ -225,7 +226,7 @@ public class Pollution extends AppCompatActivity {
             if(chest[3]==0.0)
                 results[5]+="\n";
             else
-                results[5]+=checker(("Only "+String.format( "%.2f", chest[3])+" % people reported severe pain in the chest\n"),chest[3]);
+                results[5]+=checker(("Only "+String.format( "%.2f", chest[3])+" % people reported severe pain in the chest.\n"),chest[3]);
             printer();
         }
 

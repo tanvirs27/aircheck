@@ -1,5 +1,6 @@
 package com.newbies.aircheck;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -52,6 +53,7 @@ public class UserSymptom extends AppCompatActivity {
     final int nasal = 3;
     final int asthma = 4;
     final int chest_pain = 5;
+    ProgressDialog pDialog;
 
     String Symptom[] = {"None", "Mild", "Moderate", "Severe"};
     static RadioGroup[] symGroup;
@@ -120,10 +122,10 @@ public class UserSymptom extends AppCompatActivity {
         }
         createOnClick();
         // finish();
-        String out = "Name=" + name + "\nAge =" + age + "\nLocation =" + location + "\nCountry" + country + "\nSymptom" ;
+       /* String out = "Name=" + name + "\nAge =" + age + "\nLocation =" + location + "\nCountry" + country + "\nSymptom" ;
         for(int i=0;i<symptomNumber;i++)
-            out+=" "+val[i];
-        Toast.makeText(UserSymptom.this, out,Toast.LENGTH_SHORT).show();
+            out+=" "+val[i];*/
+        //Toast.makeText(UserSymptom.this, out,Toast.LENGTH_SHORT).show();
         onclickshow();
     }
 
@@ -235,6 +237,11 @@ public class UserSymptom extends AppCompatActivity {
 
         HttpSend httas = new HttpSend();
         httas.execute(sendData);
+        pDialog=new ProgressDialog(UserSymptom.this);
+        pDialog.setTitle("Sending data to server");
+        pDialog.setMessage("Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.show();
     }
 
     public void showMessage(String title, String message) {
@@ -321,7 +328,10 @@ public class UserSymptom extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            showMessage("server recieved:",result);
+            //Toast.makeText(UserSymptom.this, "Server received data",Toast.LENGTH_SHORT).show();
+           // showMessage("server recieved:",result);
+            pDialog.dismiss();
+            finish();
         }
 
     }

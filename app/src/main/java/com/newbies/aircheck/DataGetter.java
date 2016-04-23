@@ -70,10 +70,10 @@ public class DataGetter extends AppCompatActivity {
 
     private void urlmaker(){
 
-        String time="20160";
+        String time="2016098";
 
-        int x=rand.nextInt(90)+10;
-        time+=x;
+        //int x=rand.nextInt(90)+10;
+        //time+=x;
 
         String address=longitude+","+latitude+","+(longitude+1)+","+(latitude+1);
         String url1="http://map2.vis.earthdata.nasa.gov/image-download?TIME=";
